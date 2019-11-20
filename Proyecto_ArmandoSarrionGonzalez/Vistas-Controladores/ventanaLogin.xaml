@@ -1,0 +1,17 @@
+﻿<Window x:Name="ventanaLogin1" x:Class="Proyecto_ArmandoSarrionGonzalez.ventanaLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_ArmandoSarrionGonzalez"
+        mc:Ignorable="d" Height="496.177" Width="427.867" Title="Log In" ResizeMode="NoResize" Background="#FFFCFFFF">
+    <Grid Margin="0,0,14,1">
+        <Label x:Name="labUsuario" Content="Usuario:" Margin="78,68,0,0" VerticalAlignment="Top" Height="31" Width="232" HorizontalAlignment="Left" KeyboardNavigation.TabNavigation="None"/>
+        <TextBox x:Name="tbxUsuario" Height="38" Margin="78,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277" HorizontalAlignment="Left"/>
+        <Label x:Name="labContrasenia" Content="Contraseña:" Margin="78,171,0,0" VerticalAlignment="Top" Height="31" Width="232" HorizontalAlignment="Left" KeyboardNavigation.TabNavigation="None"/>
+        <PasswordBox x:Name="tbxContrasenia" Height="38" Margin="78,202,0,0" VerticalAlignment="Top" Width="277" HorizontalAlignment="Left"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" Margin="78,298,0,0" VerticalAlignment="Top" Width="106" Height="38" HorizontalAlignment="Left" Click="BtnAceptar_Click"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" Margin="249,298,0,0" VerticalAlignment="Top" Width="106" Height="38" HorizontalAlignment="Left" Click="BtnCancelar_Click"/>
+
+    </Grid>
+</Window>

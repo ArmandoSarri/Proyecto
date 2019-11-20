@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="id_doc" />
+    </Key>
+    <Property Name="id_doc" Type="int" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contenido" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="fecha_llegada" Type="date" Nullable="false" />
+    <Property Name="fecha_salida" Type="date" Nullable="false" />
+    <Property Name="pertenencia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_remitente" Type="int" />
+    <Property Name="id_organismo" Type="int" />
+  </EntityType>
+  <EntityType Name="Organismo">
+    <Key>
+      <PropertyRef Name="id_organismo" />
+    </Key>
+    <Property Name="id_organismo" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="telefono" Type="int" />
+    <Property Name="telefono2" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="fax" Type="int" />
+    <Property Name="correo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Persona_Inscrita">
+    <Key>
+      <PropertyRef Name="id_persona" />
+    </Key>
+    <Property Name="id_persona" Type="int" Nullable="false" />
+    <Property Name="tomo" Type="int" Nullable="false" />
+    <Property Name="pagina" Type="int" Nullable="false" />
+    <Property Name="seccion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="id_persona" />
+    </Key>
+    <Property Name="id_persona" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="primer_apellido" Type="varchar" MaxLength="50" />
+    <Property Name="segundo_apellido" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="int" />
+    <Property Name="telefono2" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="dni" Type="varchar" MaxLength="9" />
+    <Property Name="fax" Type="int" />
+    <Property Name="correo" Type="varchar" MaxLength="50" />
+    <Property Name="tipo" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas_Documentos">
+    <Key>
+      <PropertyRef Name="id_persona" />
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_persona" Type="int" Nullable="false" />
+    <Property Name="id_documento" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Remitente">
+    <Key>
+      <PropertyRef Name="id_remitente" />
+    </Key>
+    <Property Name="id_remitente" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="primer_apellido" Type="varchar" MaxLength="50" />
+    <Property Name="segundo_apellido" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="int" />
+    <Property Name="telefono2" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="dni" Type="varchar" MaxLength="9" />
+    <Property Name="fax" Type="int" />
+    <Property Name="correo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="40" />
+    <Property Name="Contrasenia" Type="varchar" MaxLength="40" />
+    <Property Name="Fecha_Creacion" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Documento__id_or__4E88ABD4">
+    <End Role="Organismo" Type="Self.Organismo" Multiplicity="0..1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organismo">
+        <PropertyRef Name="id_organismo" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="id_organismo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__id_re__4D94879B">
+    <End Role="Remitente" Type="Self.Remitente" Multiplicity="0..1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Remitente">
+        <PropertyRef Name="id_remitente" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="id_remitente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Persona_I__id_pe__02FC7413">
+    <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+    <End Role="Persona_Inscrita" Type="Self.Persona_Inscrita" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="Persona_Inscrita">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Personas___id_do__70DDC3D8">
+    <End Role="Documento" Type="Self.Documento" Multiplicity="1" />
+    <End Role="Personas_Documentos" Type="Self.Personas_Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documento">
+        <PropertyRef Name="id_doc" />
+      </Principal>
+      <Dependent Role="Personas_Documentos">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Personas___id_pe__6FE99F9F">
+    <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+    <End Role="Personas_Documentos" Type="Self.Personas_Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="Personas_Documentos">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoModelStoreContainer">
+    <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organismo" EntityType="Self.Organismo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona_Inscrita" EntityType="Self.Persona_Inscrita" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personas_Documentos" EntityType="Self.Personas_Documentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Remitente" EntityType="Self.Remitente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Documento__id_or__4E88ABD4" Association="Self.FK__Documento__id_or__4E88ABD4">
+      <End Role="Organismo" EntitySet="Organismo" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__id_re__4D94879B" Association="Self.FK__Documento__id_re__4D94879B">
+      <End Role="Remitente" EntitySet="Remitente" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Persona_I__id_pe__02FC7413" Association="Self.FK__Persona_I__id_pe__02FC7413">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Persona_Inscrita" EntitySet="Persona_Inscrita" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Personas___id_do__70DDC3D8" Association="Self.FK__Personas___id_do__70DDC3D8">
+      <End Role="Documento" EntitySet="Documento" />
+      <End Role="Personas_Documentos" EntitySet="Personas_Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Personas___id_pe__6FE99F9F" Association="Self.FK__Personas___id_pe__6FE99F9F">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Personas_Documentos" EntitySet="Personas_Documentos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

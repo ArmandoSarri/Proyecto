@@ -1,0 +1,8 @@
+﻿<Application x:Class="Proyecto_ArmandoSarrionGonzalez.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Proyecto_ArmandoSarrionGonzalez"
+             StartupUri="Vistas-Controladores/ventanaInicio.xaml">
+    <Application.Resources>
+    </Application.Resources>
+</Application>

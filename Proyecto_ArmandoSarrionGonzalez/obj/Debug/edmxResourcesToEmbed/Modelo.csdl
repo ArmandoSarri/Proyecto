@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="id_doc" />
+    </Key>
+    <Property Name="id_doc" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contenido" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_llegada" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_salida" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="pertenencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_remitente" Type="Int32" />
+    <Property Name="id_organismo" Type="Int32" />
+    <NavigationProperty Name="Organismo" Relationship="Self.FK__Documento__id_or__4E88ABD4" FromRole="Documento" ToRole="Organismo" />
+    <NavigationProperty Name="Remitente" Relationship="Self.FK__Documento__id_re__4D94879B" FromRole="Documento" ToRole="Remitente" />
+    <NavigationProperty Name="Personas" Relationship="Self.Personas_Documentos" FromRole="Documento" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="Organismo">
+    <Key>
+      <PropertyRef Name="id_organismo" />
+    </Key>
+    <Property Name="id_organismo" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="Int32" />
+    <Property Name="telefono2" Type="Int32" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="Int32" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Documento" Relationship="Self.FK__Documento__id_or__4E88ABD4" FromRole="Organismo" ToRole="Documento" />
+  </EntityType>
+  <EntityType Name="Persona_Inscrita">
+    <Key>
+      <PropertyRef Name="id_persona" />
+    </Key>
+    <Property Name="id_persona" Type="Int32" Nullable="false" />
+    <Property Name="tomo" Type="Int32" Nullable="false" />
+    <Property Name="pagina" Type="Int32" Nullable="false" />
+    <Property Name="seccion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK__Persona_I__id_pe__02FC7413" FromRole="Persona_Inscrita" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="id_persona" />
+    </Key>
+    <Property Name="id_persona" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="primer_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="segundo_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="Int32" />
+    <Property Name="telefono2" Type="Int32" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="Int32" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Persona_Inscrita" Relationship="Self.FK__Persona_I__id_pe__02FC7413" FromRole="Personas" ToRole="Persona_Inscrita" />
+    <NavigationProperty Name="Documento" Relationship="Self.Personas_Documentos" FromRole="Personas" ToRole="Documento" />
+  </EntityType>
+  <EntityType Name="Remitente">
+    <Key>
+      <PropertyRef Name="id_remitente" />
+    </Key>
+    <Property Name="id_remitente" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="primer_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="segundo_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="Int32" />
+    <Property Name="telefono2" Type="Int32" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="Int32" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Documento" Relationship="Self.FK__Documento__id_re__4D94879B" FromRole="Remitente" ToRole="Documento" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasenia" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_Creacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK__Documento__id_or__4E88ABD4">
+    <End Role="Organismo" Type="Self.Organismo" Multiplicity="0..1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organismo">
+        <PropertyRef Name="id_organismo" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="id_organismo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documento__id_re__4D94879B">
+    <End Role="Remitente" Type="Self.Remitente" Multiplicity="0..1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Remitente">
+        <PropertyRef Name="id_remitente" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="id_remitente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Persona_I__id_pe__02FC7413">
+    <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+    <End Role="Persona_Inscrita" Type="Self.Persona_Inscrita" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="Persona_Inscrita">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Personas_Documentos">
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ProyectoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Documento" EntityType="Self.Documento" />
+    <EntitySet Name="Organismo" EntityType="Self.Organismo" />
+    <EntitySet Name="Persona_Inscrita" EntityType="Self.Persona_Inscrita" />
+    <EntitySet Name="Personas" EntityType="Self.Personas" />
+    <EntitySet Name="Remitente" EntityType="Self.Remitente" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__Documento__id_or__4E88ABD4" Association="Self.FK__Documento__id_or__4E88ABD4">
+      <End Role="Organismo" EntitySet="Organismo" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documento__id_re__4D94879B" Association="Self.FK__Documento__id_re__4D94879B">
+      <End Role="Remitente" EntitySet="Remitente" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Persona_I__id_pe__02FC7413" Association="Self.FK__Persona_I__id_pe__02FC7413">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Persona_Inscrita" EntitySet="Persona_Inscrita" />
+    </AssociationSet>
+    <AssociationSet Name="Personas_Documentos" Association="Self.Personas_Documentos">
+      <End Role="Documento" EntitySet="Documento" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

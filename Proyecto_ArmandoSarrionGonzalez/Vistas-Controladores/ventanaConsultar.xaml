@@ -1,0 +1,169 @@
+﻿<Window x:Class="Proyecto_ArmandoSarrionGonzalez.Vistas_Controladores.ventanaConsultar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_ArmandoSarrionGonzalez.Vistas_Controladores"
+        mc:Ignorable="d"
+        Title="" Height="1007.623" Width="2669.073" WindowState="Maximized" Activated="Window_Activated">
+
+    <Grid>
+        <TabControl Margin="10,10,10,233">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <DockPanel SnapsToDevicePixels="true" ClipToBounds="true">
+                        <UniformGrid DockPanel.Dock="Top" Rows="1" IsItemsHost="True"/>
+                        <Border Background="{TemplateBinding Background}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter Name="PART_SelectedContentHost" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                            Margin="{TemplateBinding Padding}" 
+                            ContentSource="SelectedContent" />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </TabControl.Template>
+            <TabItem Header="Documento">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="875" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="875" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="875" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Identificador:</Label>
+                    <TextBox Name="tbxIdentificador" Grid.Row="1"/>
+                    <Label Grid.Row="3">Tipo:</Label>
+                    <ComboBox Name="cbxTipoDocumento" Grid.Row="4">
+                        <ComboBoxItem Name="cbiExhortoP">Exhorto Penal</ComboBoxItem>
+                        <ComboBoxItem Name="cbiExhortoC">Exhorto Civil</ComboBoxItem>
+                        <ComboBoxItem Name="cbiRegistroCivil">Registro Civil</ComboBoxItem>
+                        <ComboBoxItem Name="cbiMatrimonio">Matrimonio</ComboBoxItem>
+                        <ComboBoxItem Name="cbiCircular">Circular</ComboBoxItem>
+                        <ComboBoxItem Name="cbiConciliacion">Conciliación</ComboBoxItem>
+                        <ComboBoxItem Name="cbiDelitoL">Delito leve</ComboBoxItem>
+                        <ComboBoxItem Name="cbiVerbalC">Verbal civil</ComboBoxItem>
+                        <ComboBoxItem Name="cbiOtro">Otro</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Column="2">Fecha de llegada:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="tbxFechaLlegada" IsReadOnly="True" />
+                    <Label Grid.Column="2" Grid.Row="3">Fecha de salida:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="4" Name="tbxFechaSalida" IsReadOnly="True" />
+                    <Button Name="btnFechaLlegada" Grid.Column="3" Grid.Row="1" Click="BtnFecha_Click"/>
+                    <Button Name="btnFechaSalida" Grid.Column="3" Grid.Row="4" Click="BtnFecha_Click"/>
+                    <Label Grid.Column="0" Grid.Row="6">Contenido:</Label>
+                    <TextBox Grid.Column="0" Grid.Row="7" Name="tbxContenido"/>
+                    <Label Grid.Row="6" Grid.Column="2">Pertenece a:</Label>
+                    <ComboBox Name="cbxPertenencia" Grid.Row="7" Grid.Column="2">
+                        <ComboBoxItem Name="cbiBoal">Boal</ComboBoxItem>
+                        <ComboBoxItem Name="cbiVillayon">Villayón</ComboBoxItem>
+                        <ComboBoxItem Name="cbiIllano">Illano</ComboBoxItem>
+                    </ComboBox>
+                    <Button Grid.Column="0" Grid.Row="9" Name="btnConsultarDoc" Content="Consultar" Click="BtnBuscar_Click"></Button>
+                    <Button Grid.Column="2" Grid.Row="9" Name="btnCancelarDoc" Content="Cancelar" Click="BtnCancelar_Click"></Button>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Persona">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="875" />
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="875" />
+                        <ColumnDefinition Width="875" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Identificador:</Label>
+                    <TextBox Name="tbxIdentificadorPersona" Grid.Row="1"/>
+                    <Label Grid.Row="3">Nombre:</Label>
+                    <TextBox Name="tbxNombre" Grid.Row="4"/>
+                    <Label Grid.Column="2">Primer Apellido:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="tbxPrimerApellido"/>
+                    <Label Grid.Column="2" Grid.Row="3">Segundo Apellido:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="4" Name="tbxSegundoApellido"/>
+                    <Label Grid.Column="0" Grid.Row="6">DNI:</Label>
+                    <TextBox Grid.Column="0" Grid.Row="7" Name="tbxDni"/>
+                    <Label Grid.Column="0" Grid.Row="9">Correo:</Label>
+                    <TextBox Grid.Column="0" Grid.Row="10" Name="tbxCorreo"/>
+                    <Label Grid.Column="2" Grid.Row="6">Teléfono o Fax:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="7" Name="tbxTelefono"/>
+                    <Label Grid.Column="2" Grid.Row="9">Dirección:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="10" Name="tbxDireccion"/>
+                    <Label Grid.Column="0" Grid.Row="12">Tipo: </Label>
+                    <ComboBox Grid.Row="13" Grid.Column="0" Name="cbxTipoPersona">
+                        <ComboBoxItem Name="cbiInteresado">Interesado</ComboBoxItem>
+                        <ComboBoxItem Name="cbiInscrito">Inscrito</ComboBoxItem>
+                    </ComboBox>
+                    <Button Grid.Column="2" Grid.Row="12" Name="btnConsultarPersona" Content="Consultar" Click="BtnBuscar_Click"></Button>
+                    <Button Grid.Column="2" Grid.Row="13" Name="btnCancelarPersona" Content="Cancelar" Click="BtnCancelar_Click"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Organismo">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="875" />
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="875" />
+                        <ColumnDefinition Width="875" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Identificador:</Label>
+                    <TextBox Name="tbxIdentificadorOrganismo" Grid.Row="1"/>
+                    <Label Grid.Row="3">Nombre:</Label>
+                    <TextBox Name="tbxNombreOrganismo" Grid.Row="4"/>
+                    <Label Grid.Column="0" Grid.Row="6">Correo:</Label>
+                    <TextBox Grid.Column="0" Grid.Row="7" Name="tbxCorreoOrganismo"/>
+                    <Label Grid.Column="2" Grid.Row="0">Teléfono o Fax:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="tbxTelefonoFax"/>
+                    <Label Grid.Column="2" Grid.Row="3">Dirección:</Label>
+                    <TextBox Grid.Column="2" Grid.Row="4" Name="tbxDireccionOrganismo"/>
+                    <Button Grid.Column="0" Grid.Row="9" Name="btnConsultarOrg" Content="Consultar" Click="BtnBuscar_Click"></Button>
+                    <Button Grid.Column="2" Grid.Row="9" Name="btnCancelarOrg" Content="Cancelar" Click="BtnCancelar_Click"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Otro">
+                
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
